@@ -4,7 +4,7 @@ app.component('photo-search', {
         /*html*/
         `
     <p>Typing... {{ input }}</p>  
-    
+    <button class="material-icons" v-if="search==false" v-on:click="toggleSearch">search</button>
     <div class="flex" v-show="search">
       <input type="text" class="flex-1 border-2 border-blue-2" v-model="input" @keyup.enter="inputSearch"
         placeholder="Please enter text for searching photos...">
@@ -17,31 +17,15 @@ app.component('photo-search', {
         return {
             input: '',
             search: false,
-            input: '',
-            notFound: false,
-            showImage: false,
-            currentIndex: 0,
         }
     },
-    computed: {
-        inputSearch() {
-            if (this.inputSearch == '') {
-                return this.tasks;
-            } else {
-                NF = this.tasks.filter(p => p.article.includes(this.input.toLowerCase()));
-                if (NF == '') {
-                    this.notFound = true;
-                } else {
-                    return NF;
-                }
-
+    methods: {
+        toggleSearch() {
+            this.search = !this.search;
+            if (this.search == false) {
+                this.inputSearch = '';
             }
-
+            this.$emit('toggle-search');
         },
-        addNewTask() {
-            let task = this.newTask
-            this.$emit('add-new-task', task)
-            this.newTask = ''
-        }
     }
 })

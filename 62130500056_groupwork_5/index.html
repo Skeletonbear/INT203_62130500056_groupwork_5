@@ -38,8 +38,10 @@
 
 <body>
   <div id="app" class="max-w-xl mx-auto my-10 space-y-3 font-mono">
-    <!-- <photo-search @add-new-task="addNewTask"> </photo-search> -->
+    <photo-list2 :tasks="tasks" @toggle-like="togglelike" @img-Clicked="imgClicked" @inputSearch="input-Search"> </photo-list2>
+    <photo-search @toggleSearch="toggle-search"> </photo-search>
     <photo-list :tasks="tasks" @toggle-like="togglelike" @img-Clicked="imgClicked"> </photo-list>
+    
     
     <!-- 
 
