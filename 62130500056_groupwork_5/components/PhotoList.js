@@ -1,5 +1,6 @@
 app.component('photo-list', {
     props: {
+    
         tasks: {
             type: Array,
             require: true
@@ -7,6 +8,11 @@ app.component('photo-list', {
         'not-found': Boolean,
         'input-data': Array
     },
+    emits:[
+        'toggle-like',
+        'img-clicked',
+        'show-images'
+    ],
     template:
         /*html*/
         `
@@ -17,8 +23,13 @@ app.component('photo-list', {
        
     </div>
 
-  
     `,
+    data() {
+        return {
+            currentIndex: 0,
+            showImage: false
+        }
+    },
     methods: {
         togglelike(index) {
             this.$emit('toggle-like', index)

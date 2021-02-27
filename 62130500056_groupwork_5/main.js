@@ -47,7 +47,10 @@
             },
             imgClicked(index) {   
                 this.currentIndex = index;        
-            }
+            },
+            showImages(showImg) {
+                this.showImage = showImg;
+            },
 
         },
         computed: {

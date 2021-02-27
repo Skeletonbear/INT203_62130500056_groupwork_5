@@ -5,6 +5,10 @@ app.component('photo-search', {
             require: true
         }
     },
+    emits:[
+        'toggle-Search',
+        'search-text'
+    ],
     template:
         /*html*/
         `
@@ -17,15 +21,13 @@ app.component('photo-search', {
       placeholder="Please enter text for searching photos...">
       
       <button class="bg-blue-400 text-white py-1 px-6 rounded" v-on:click="toggleSearch">Cancel</button>
-      <p v-if="notFound">NOT FOUND... </p>
-      </div>
+    </div>
     
     `,
     data() {
         return {
             inputSearch: '',
             search: false,
-
         }
     },
     methods: {

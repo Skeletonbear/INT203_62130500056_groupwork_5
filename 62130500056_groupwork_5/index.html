@@ -42,9 +42,11 @@
 
     <photo-search :tasks="tasks"  @search-text="searchText" @toggle-Search="toggleSearch"> </photo-search> 
 
-    <photo-view :tasks="tasks"  @close="close" > </photo-view>
+    <photo-view :tasks="tasks" :input-data="inputData" :task-id="currentIndex" 
+    :show-images="showImage" @img-Clicked="imgClicked" @close="close" > </photo-view>
 
-    <photo-list :tasks="tasks" :not-found="notFound" :input-data="inputData" @toggle-like="togglelike" @img-Clicked="imgClicked"> </photo-list>
+    <photo-list :tasks="tasks" :not-found="notFound" :input-data="inputData" 
+    @toggle-like="togglelike" @img-Clicked="imgClicked"> </photo-list>
     
     
     <!-- 
