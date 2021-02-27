@@ -6,7 +6,7 @@ app.component('photo-search', {
         }
     },
     emits:[
-        'toggle-Search',
+        'toggle-search',
         'search-text'
     ],
     template:
@@ -36,7 +36,7 @@ app.component('photo-search', {
             if (this.search == false) {
                 this.inputSearch = '';
             }
-            this.$emit('toggle-Search');
+            this.$emit('toggle-search');
         },
         searchText() {
             this.$emit('search-text', this.inputSearch);
