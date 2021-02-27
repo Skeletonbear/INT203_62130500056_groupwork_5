@@ -21,7 +21,7 @@
                     }
                 ],
                 search: false,
-                input: '',
+                inputSearch: '',
                 notFound: false,
                 showImage: false,
                 currentIndex: 0,
@@ -31,6 +31,9 @@
         },
 
         methods: {
+            searchText(searchText) {
+                this.inputSearch = searchText;
+            },
             togglelike(index) {
                 this.tasks[index].like = !this.tasks[index].like
             },
@@ -42,8 +45,8 @@
             close() {
                 this.showImage = false;
             },
-            imgClicked() {
-                this.showImage = true;           
+            imgClicked(index) {   
+                this.currentIndex = index;        
             }
 
         },
@@ -56,11 +59,11 @@
                 return this.tasks.filter(t => t.like).length
             },
 
-            inputSearch() {
+            inputData() {
                 if (this.inputSearch == '') {
                     return this.tasks;
                 } else {
-                    NF = this.tasks.filter(p => p.article.includes(this.input.toLowerCase()));
+                    NF = this.tasks.filter(p => p.article.includes(this.inputSearch.toLowerCase()));
                     if (NF == '') {
                         this.notFound = true;
                     } else {

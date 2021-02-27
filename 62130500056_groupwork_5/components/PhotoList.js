@@ -3,29 +3,36 @@ app.component('photo-list', {
         tasks: {
             type: Array,
             require: true
-        }
+        },
+        'not-found': Boolean,
+        'input-data': Array
     },
     template:
         /*html*/
         `
-    <div v-for="(task,index) in tasks" class="flex ">
-    <img :src="task.image" v-on:click="togglelike(index)" class="h-24 w-34 resize" @dblclick="imgClicked(task.id)" />
-    <h1 class=" mx-5 my-10 space-y-3 " > {{ task.article }} </h1>
-    <i class="material-icons text-red-400 mx-5 my-10 space-y-3 " v-show="task.like">favorite</i>
+    <div v-for="task in inputData" class="flex ">
+        <img :src="task.image" v-on:click="togglelike(task.id)" class="h-24 w-34 resize" @dblclick="imgClicked(task.id)" />
+        <h1 class=" mx-5 my-10 space-y-3 " > {{ task.article }} </h1>
+        <i class="material-icons text-red-400 mx-5 my-10 space-y-3 " v-show="task.like">favorite</i>
+       
     </div>
-    </div>
+
   
     `,
     methods: {
         togglelike(index) {
             this.$emit('toggle-like', index)
         },
-        imgClicked() {
-            this.$emit('img-Clicked', index)
-        }
+        imgClicked(id) {
+            this.currentIndex = id;
+            this.showImage = true;
+            this.$emit('img-clicked', this.currentIndex);
+            this.$emit('show-images', this.showImage)
+
+        },
 
     }
-    
+
 })
 
 app.component('photo-list2', {
@@ -40,8 +47,7 @@ app.component('photo-list2', {
         `
     <div class="font-mono">Photo Gallery ( {{countUnlike}}) </div>
     <div>:: Like ( {{like}} )</div>
-    
-   
+
     `,
     computed: {
         countUnlike() {
@@ -51,6 +57,5 @@ app.component('photo-list2', {
         like() {
             return this.tasks.filter(t => t.like).length
         },
-
     }
 })
